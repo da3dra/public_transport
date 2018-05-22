@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>logs6.papertrailapp.com</syslogHost>
+        <port>37552</port>
+        <facility>USER</facility>
+        <suffixPattern>Public Transport: %logger %msg</suffixPattern> 
+        <throwableExcluded>false</throwableExcluded>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>INFO</level>
+    </filter>
+    </appender>
+    
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="SYSLOG" />
+    </root>
+    
+</configuration>
